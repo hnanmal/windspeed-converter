@@ -44,18 +44,16 @@ export default function WindConverter() {
   };
 
   return (
-    <div className="max-w-xl w-full mx-auto bg-white shadow-lg rounded-xl p-8 space-y-6">
-      <h2 className="text-2xl font-bold text-blue-700 mb-4">🌬️ 풍속 변환기</h2>
+    <div className="max-w-xl w-full mx-auto bg-white dark:bg-gray-900 shadow-lg rounded-xl p-8 space-y-6 text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-4">🌬️ 풍속 변환기</h2>
 
       {/* 모드 선택 */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700">
-          Conversion Mode
-        </label>
+        <label className="block text-sm font-semibold">Conversion Mode</label>
         <select
           value={mode}
           onChange={(e) => setMode(e.target.value)}
-          className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-black dark:text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           <option value="Basic">Basic</option>
           <option value="Advanced">Advanced</option>
@@ -71,12 +69,12 @@ export default function WindConverter() {
 
       {/* Basic 모드 */}
       {mode === "Basic" && (
-        <div className="space-y-1">
+        <div className="space-y-2">
           <label className="font-semibold block">Target Code</label>
           <select
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="border px-3 py-2 rounded w-full"
+            className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-black dark:text-white px-3 py-2 rounded w-full"
           >
             <option value="">-- 코드 선택 --</option>
             {Object.keys(codeMap).map((k) => (
@@ -97,14 +95,14 @@ export default function WindConverter() {
       {/* 버튼 */}
       <button
         onClick={handleConvert}
-        className="bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded w-full"
+        className="bg-blue-500 hover:bg-blue-600 text-black dark:text-white font-semibold py-2 px-4 rounded w-full"
       >
         변환하기
       </button>
 
       {/* 결과 출력 */}
       {result && (
-        <div className="text-blue-700 font-semibold">
+        <div className="text-blue-700 dark:text-blue-400 font-semibold">
           변환된 풍속: {result.value} m/s<br />
           (재현기간 {result.targetRP}년, 평균시간 {result.targetAT}초 기준)
         </div>
@@ -112,9 +110,9 @@ export default function WindConverter() {
 
       {/* 히스토리 */}
       {history.length > 0 && (
-        <div className="pt-6 border-t">
-          <h3 className="font-semibold text-gray-800 mb-2">📜 변환 기록</h3>
-          <ul className="text-sm text-gray-600 space-y-1 max-h-40 overflow-y-auto list-disc pl-5">
+        <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+          <h3 className="font-semibold mb-2">📜 변환 기록</h3>
+          <ul className="text-sm space-y-1 max-h-40 overflow-y-auto list-disc pl-5 text-gray-700 dark:text-gray-300">
             {history.map((log, i) => (
               <li key={i}>{log}</li>
             ))}
@@ -128,14 +126,13 @@ export default function WindConverter() {
 function Input({ label, value, onChange }) {
   return (
     <div className="space-y-1">
-      <label className="block text-sm font-semibold text-gray-700">{label}</label>
+      <label className="block text-sm font-semibold">{label}</label>
       <input
         type="number"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-black dark:text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
     </div>
   );
 }
-
